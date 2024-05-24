@@ -14,11 +14,12 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=workflows
-    volumes:        
+    volumes:                      
       - ./libs:/usr/src/app/libs
       - ./package.json:/usr/src/app/package.json
       - ./tsconfig.json:/usr/src/app/tsconfig.json
-      # Note: This is usually not a good practice to mount the "node_modules" directory on the host to the container       # We are doing this for the sake of simplicity in this example       - ./node_modules:/usr/src/app/node_modules
+      # Note: This is usually not a good practice to mount the "node_modules" directory on the host to the container       # We are doing this for the sake of simplicity in this example       
+      - ./node_modules:/usr/src/app/node_modules
       # This instructs Docker Compose to mount the "workflows-service" directory on the host to the "/usr/src/app" directory on the container
       # This allows us to make changes to the code on the host and have them reflected in the container without having to rebuild the image
       - ./apps/workflows-service:/usr/src/app/apps/workflows-service
@@ -49,7 +50,8 @@ services:
       - ./libs:/usr/src/app/libs
       - ./package.json:/usr/src/app/package.json    
       - ./tsconfig.json:/usr/src/app/tsconfig.json   
-      # Note: This is usually not a good practice to mount the "node_modules" directory on the host to the container       # We are doing this for the sake of simplicity in this example       - ./node_modules:/usr/src/app/node_modules
+      # Note: This is usually not a good practice to mount the "node_modules" directory on the host to the container       # We are doing this for the sake of simplicity in this example       
+      - ./node_modules:/usr/src/app/node_modules
       - ./apps/virtual-facility:/usr/src/app/apps/virtual-facility
     depends_on:
       - virtual-facility-db
